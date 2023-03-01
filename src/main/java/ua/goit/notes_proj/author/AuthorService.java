@@ -2,6 +2,7 @@ package ua.goit.notes_proj.author;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ua.goit.notes_proj.note.Note;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,7 +15,17 @@ public class AuthorService {
     return authorRepository.findAll();
   }
   public Author findAuthorById(long id){
-    return authorRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Author with id: ["+id+"] does not exists"));
+    Author author = authorRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Author with id: [" + id + "] does not exists"));
+    List<Note> notes = author.getNotes();
+    notes.forEach(note -> {
+      String content = note.getContent();
+      int length = content.length();
+      if (length > 30){
+        note.setContent(content.substring(0, 30) + " ...");
+      }
+    });
+    author.setNotes(notes);
+    return author;
   }
   public void deleteById(long id) {
     authorRepository.deleteById(id);
