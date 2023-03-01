@@ -12,6 +12,8 @@ import ua.goit.notes_proj.author.Author;
 import ua.goit.notes_proj.author.AuthorExtended;
 import ua.goit.notes_proj.author.AuthorService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/note")
 @RequiredArgsConstructor
@@ -22,8 +24,16 @@ public class NoteController {
     public ModelAndView getListOfNotes(Authentication authentication){
         AuthorExtended authorExtended = (AuthorExtended)authentication.getPrincipal();
         Author author = authorService.findAuthorById(authorExtended.getId());
+        List<Note> notes = author.getNotes();
+        notes.forEach(note -> {
+            String content = note.getContent();
+            int length = content.length();
+            if (length > 30){
+                note.setContent(content.substring(0, 30) + "...");
+            }
+        });
         ModelAndView result = new ModelAndView("note-list");
-        result.addObject("notes", author.getNotes());
+        result.addObject("notes", notes);
         result.addObject("author", author.getName());
         result.addObject("authority", author.getAuthority());
         return result;
