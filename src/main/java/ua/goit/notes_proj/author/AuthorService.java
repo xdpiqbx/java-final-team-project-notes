@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 @Service
 @RequiredArgsConstructor
 public class AuthorService {
+  private static final int MAX_NOTE_CONTENT_LENGTH_IN_NOTES_LIST = 30;
   private final AuthorRepository authorRepository;
   public List<Author> findAllAuthors(){
     return authorRepository.findAll();
@@ -20,8 +21,8 @@ public class AuthorService {
     notes.forEach(note -> {
       String content = note.getContent();
       int length = content.length();
-      if (length > 30){
-        note.setContent(content.substring(0, 30) + " ...");
+      if (length > MAX_NOTE_CONTENT_LENGTH_IN_NOTES_LIST){
+        note.setContent(content.substring(0, MAX_NOTE_CONTENT_LENGTH_IN_NOTES_LIST) + " ...");
       }
     });
     author.setNotes(notes);
