@@ -23,7 +23,7 @@ public class NoteController {
         AuthorExtended authorExtended = (AuthorExtended)authentication.getPrincipal();
         Author author = authorService.findAuthorById(authorExtended.getId());
         ModelAndView result = new ModelAndView("note-list");
-        result.addObject("notes", noteService.findAllByAuthorId(authorExtended.getId()));
+        result.addObject("notes", author.getNotes());
         result.addObject("author", author.getName());
         result.addObject("authority", author.getAuthority());
         return result;
