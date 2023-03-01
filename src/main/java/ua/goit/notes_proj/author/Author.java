@@ -1,4 +1,4 @@
-package ua.goit.notes.author;
+package ua.goit.notes_proj.author;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
-import ua.goit.notes.note.Note;
+import ua.goit.notes_proj.note.Note;
 
 import java.util.List;
 

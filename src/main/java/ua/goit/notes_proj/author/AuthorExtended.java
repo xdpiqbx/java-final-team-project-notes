@@ -1,4 +1,4 @@
-package ua.goit.notes.author;
+package ua.goit.notes_proj.author;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 

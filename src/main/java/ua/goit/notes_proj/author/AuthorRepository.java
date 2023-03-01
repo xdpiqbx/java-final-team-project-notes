@@ -1,4 +1,4 @@
-package ua.goit.notes.author;
+package ua.goit.notes_proj.author;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package ua.goit.notes.author;
+package ua.goit.notes_proj.author;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
